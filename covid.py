@@ -71,3 +71,39 @@ top5_recovered = pd.DataFrame(data.groupby('Country')['Recovered'].sum().nlarges
 fig3 = px.bar(top5_recovered, x = top5_recovered.index, y = 'Recovered', height = 600, color = 'Recovered',
              title = 'Top 5 Recovered Cases Countries', color_continuous_scale = px.colors.sequential.Viridis)
 fig3.show()
+
+
+# Most affected states/provinces in largely affected countries
+# Here we are going to extract top 4 affected countries' states data and plot it!
+
+# Firstly, aggregating data with our dataset :
+# USA can be used to display the top affected states of USA
+topstates_us = data['Country'] == 'US'
+topstates_us = data[topstates_us].nlargest(5, 'Confirmed')
+# Brazil can be used to display the top affected states of Brazil
+topstates_brazil = data['Country'] == 'Brazil'
+topstates_brazil = data[topstates_brazil].nlargest(5, 'Confirmed')
+# India can be used to display the top affected states of India
+topstates_india = data['Country'] == 'India'
+topstates_india = data[topstates_india].nlargest(5, 'Confirmed')
+# Russia can be used to display the top affected states of Russia
+topstates_russia = data['Country'] == 'Russia'
+topstates_russia = data[topstates_russia].nlargest(5, 'Confirmed')
+
+# Let's plot!
+
+# Most affected states of India in a bar graph format
+fig5 = go.Figure(data = [
+    go.Bar(name = 'Recovered Cases', x = topstates_india['State'], y = topstates_india['Recovered']),
+    go.Bar(name = 'Active Cases', x = topstates_india['State'], y = topstates_india['Active']),
+    go.Bar(name = 'Death Cases', x = topstates_india['State'], y = topstates_india['Deaths'])
+])
+fig5.update_layout(title = 'Most Affected States in India', barmode = 'stack', height = 600)
+fig5.show()
+
+
+
+
+
+
+
