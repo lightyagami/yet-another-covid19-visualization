@@ -11,7 +11,7 @@ from plotly.subplots import make_subplots
 
 # Getting Data
 # data can be used in CSV format too
-url_request = requests.get("https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/Coronavirus_2019_nCoV_Cases/FeatureServer/1/query?where=1%3D1&outFields=*&outSR=4326&f=json")
+url_request = requests.get("https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/Coronavirus_2019_nCoV_Cases/FeatureServer/1/query?where=1%3D1&outFields=*&outSR=4326&f=json") #Sauce url
 url_json = url_request.json() # getting the data using request
 df = pd.DataFrame(url_json['features']) # converting json into data frame
 df['attributes'][0]
@@ -101,6 +101,24 @@ fig5 = go.Figure(data = [
 fig5.update_layout(title = 'Most Affected States in India', barmode = 'stack', height = 600)
 fig5.show()
 
+# Top states in Russia
+fig6 = go.Figure(data = [
+    go.Bar(name = 'Recovered Cases', x = topstates_russia['State'], y = topstates_russia['Recovered']),
+    go.Bar(name = 'Active Cases', x = topstates_russia['State'], y = topstates_russia['Active']),
+    go.Bar(name = 'Death Cases', x = topstates_russia['State'], y = topstates_russia['Deaths'])
+])
+fig6.update_layout(title = 'Most Affected States in Russia', barmode = 'stack', height = 600)
+fig6.show()
+
+# Top states in US
+fig7 = go.Figure(data = [
+    go.Bar(name = 'Recovered Cases', x = topstates_us['State'], y = topstates_us['Recovered']),
+    go.Bar(name = 'Active Cases', x = topstates_us['State'], y = topstates_us['Active']),
+    go.Bar(name = 'Death Cases', x = topstates_us['State'], y = topstates_us['Deaths'])
+])
+fig7.update_layout(title = 'Most Affected States in USA', barmode = 'stack', height = 600)
+fig7.show()
+    
 
 
 
