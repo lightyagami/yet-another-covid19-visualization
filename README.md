@@ -5,7 +5,7 @@ Simple visualization of Covid 19 data of the world in graph.
 
 Display the data of all countries and shows active cases and dead of top 5 countries.
 
-And of Top 5 states of India.
+And of Top 5 states of Russia.
 
 ### How to run it
 
